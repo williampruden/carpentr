@@ -1,0 +1,66 @@
+{
+  "name": "patables",
+  "description": "Tables made easy in under 30 mins",
+  "version": "1.1.3",
+  "license": "MIT",
+  "author": "William Pruden <williamprudeniv@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/williampruden/patables"
+  },
+  "homepage": "https://github.com/williampruden/patables/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/williampruden/patables/issues"
+  },
+  "keywords": [
+    "patables",
+    "react",
+    "tables",
+    "react tables",
+    "tables for react",
+    "pagination tables",
+    "sorting tables",
+    "pagination",
+    "result sets",
+    "data tables",
+    "render props"
+  ],
+  "main": "dist/index.min.js",
+  "module": "dist/vendor.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "npm run build:prod && node server.js",
+    "prepublish": "yarn test",
+    "build": "rollup -c -o dist/index.min.js",
+    "lint": "./node_modules/eslint/bin/eslint.js .",
+    "lint:fix": "./node_modules/eslint/bin/eslint.js . --fix",
+    "test": "jest --config=jest.config.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.3.4",
+    "@babel/plugin-proposal-class-properties": "7.3.4",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/polyfill": "7.2.5",
+    "@babel/preset-env": "7.3.4",
+    "@babel/preset-react": "7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "23.6.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "6.2.2",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "8.0.0",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-react": "7.11.1",
+    "eslint-plugin-standard": "4.0.0",
+    "jest": "24.9.0",
+    "react": "^16.8.3",
+    "rollup": "^1.3.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-uglify": "^6.0.2"
+  }
+}

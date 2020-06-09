@@ -1,0 +1,40 @@
+{
+    "extends": [
+        "standard",
+        "plugin:react/recommended"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "space-before-function-paren": [
+            "error",
+            "never"
+        ],
+        "react/no-unescaped-entities": [
+            "error",
+            {
+                "forbid": [
+                    ">",
+                    "}"
+                ]
+            }
+        ],
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error"
+    },
+    "globals": {
+        "baseURL": false,
+        "VERSION": false,
+        "test": false,
+        "FormData": false,
+        "FileReader": false,
+        "expect": false
+    }
+}
