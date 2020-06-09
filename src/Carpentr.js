@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export const Carpenter = ({
+export const Carpentr = ({
   search = '',
   searchKeys = [],
   currentPage = 1,
@@ -53,7 +53,7 @@ export const Carpenter = ({
 
   // SORTING
   const sortByColumn = (array) => {
-    let order = $sortOrder.toLowerCase()
+    const order = $sortOrder.toLowerCase()
 
     return array.sort((a, b) => {
       let x = a[$sortColumn]
@@ -102,6 +102,7 @@ export const Carpenter = ({
     const offset = ($currentPage - 1) * parseInt($resultSet)
     const topOfRange = offset + parseInt($resultSet)
     let visible = $initialData
+
     // searchFilter will return a result set where the searchTerm matches the designated $searchKeys
     if ($search !== '') {
       visible = searchFilter(visible, $search, $searchKeys)
@@ -172,7 +173,7 @@ export const Carpenter = ({
     sortOrder: $sortOrder,
     totalPages: $totalPages,
     setColumnSortToggle,
-    setCurrentPage, // setPageNumber
+    setCurrentPage,
     setResultSet,
     setSearchTerm,
     nextDisabled: $totalPages === $currentPage,

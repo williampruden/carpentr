@@ -1,7 +1,7 @@
 {
   "name": "carpentr",
-  "description": "Tables made easy in under 30 mins",
-  "version": "0.0.1",
+  "description": "Data Tables made easy",
+  "version": "1.0.0",
   "license": "MIT",
   "author": "William Pruden <williamprudeniv@gmail.com>",
   "repository": {
@@ -72,6 +72,5 @@
     "rollup-plugin-svg": "2.0.0",
     "rollup-plugin-terser": "5.1.2",
     "rollup-plugin-uglify": "6.0.4"
-  },
-  "dependencies": {}
+  }
 }
