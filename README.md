@@ -161,6 +161,7 @@ This is the array of data you wish to put into a table format. If your data is c
 
 ```js
   const data = [...users] 
+
   const payload = Carpentr({ initialData: data })
 ```
 
@@ -170,6 +171,7 @@ You will be given a method in the next section called `setSearchTerm` that will 
 
 ```js
   const data = [...users]
+
   const payload = Carpentr({
     initialData: data,
     searchKeys: ['firstName', 'lastName']
@@ -250,6 +252,8 @@ Patables will provide to you the pagination logic for your tables. Here is your 
 By default Patables will return the first 10 results to you to display on the screen.  If you would like to change the default setting just pass your desired return into `resultSet`.
 
 ```js
+  const data = [...users]
+
   const payload = Carpentr({
     initialData: data,
     resultSet: 20
@@ -266,12 +270,12 @@ By running `Carpentr({...options})` you are returned a Payload with all of the v
 |nextDisabled         |Boolean    	|
 |prevDisabled         |Boolean    	|
 |paginationButtons    |Array      	|
+|setCurrentPage       |Function    	|
 |resultSet            |Number      	|
+|setResultSet         |Function     |
 |search               |String       |
 |setSearchTerm        |Function     |
 |setColumnSortToggle  |Function    	|
-|setCurrentPage       |Function    	|
-|setResultSet         |Function     |
 |sortColumn           |String      	|
 |sortOrder            |String      	|
 |totalPages           |Number      	|
@@ -330,8 +334,30 @@ In pagination its common to have a next / previous buttons. nextDisabled and pre
 paginationButtons is an array of the page numbers you need to display in your pagination. A few examples above show how we `.map()` over this array to create our pagination.
 
 
+#### setCurrentPage
+This method allows you to set a new `currentPage` within your pagination. Examples of this method can be found above.
+
+
 #### resultSet
-resultSet is how many items will be returned in our [visibleData](#visibledata) array. The default value is 10 however when creating your instance of `<Patables />` you can pass in a new default. If you want to let your user specify the result set then please use the [setResultSet](#setresultset) method
+resultSet is how many items will be returned in our [visibleData](#visibledata) array. The default value is 10 however when creating your instance of `Carpentr()` you can pass in a new default. If you want to let your user specify the result set then please use the [setResultSet](#setresultset) method
+
+
+#### setResultSet
+Sometimes you want to give your user the flexibility of setting how many results they wish to see in a given table. This method allows you to give them the ability to do just that.
+
+```js
+<div className='form-inline'>
+  <label className='my-1 mr-2'>Result set: </label>
+  <select
+    className='form-control'
+    value={payload.resultSet}
+    onChange={(e) => { payload.setResultSet(parseInt(e.target.value)) }}>
+    <option>5</option>
+    <option>10</option>
+    <option>15</option>
+  </select>
+</div>
+```
 
 
 #### search / setSearchTerm
@@ -352,15 +378,6 @@ these two go hand in hand as `setSearchTerm` will be the method you use to set t
 Sorting a table by its columns is a common action a user expects to take. This method requires you set a `name` attribute on the `<th />` tag that is equal to the `key` that that column is displaying. This method toggles between 'asc' and 'desc' orders.
 
 ```js
-let data = [
-  {
-    firstName: 'Michael',
-    lastName: 'Scott',
-    dob: '03-15-1964',
-    occupation: 'The Boss',
-  }
-]
-
 <thead className='bg-primary text-white'>
   <tr>
     <th name='firstName' onClick={payload.setColumnSortToggle}>FirstName</th>
@@ -369,28 +386,6 @@ let data = [
     <th name='occupation' onClick={payload.setColumnSortToggle}>Occupation</th>
   </tr>
 </thead>
-```
-
-
-#### setCurrentPage
-This method allows you to set a new `currentPage` within your pagination. Examples of this method can be found above.
-
-
-#### setResultSet
-Sometimes you want to give your user the flexibility of setting how many results they wish to see in a given table. This method allows you to give them the ability to do just that.
-
-```js
-<div className='form-inline'>
-  <label className='my-1 mr-2'>Result set: </label>
-  <select
-    className='form-control'
-    value={payload.resultSet}
-    onChange={(e) => { payload.setResultSet(parseInt(e.target.value)) }}>
-    <option>5</option>
-    <option>10</option>
-    <option>15</option>
-  </select>
-</div>
 ```
 
 
