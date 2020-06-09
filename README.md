@@ -1,5 +1,5 @@
-# PaTables
-Can't find an easy way to organize your table data without sacrificing all the design?  Neither could we. Introducing PaTables, a react render prop library that empowers you to handle the look and feel while we take care of the rest. PaTables is small performant library that fits nicely into any react project. 
+# Carpentr
+Can't find an easy way to organize your table data without sacrificing all the design?  Neither could we. Introducing Carpentr, a react render prop library that empowers you to handle the look and feel while we take care of the rest. Carpentr is small performant library that fits nicely into any react project. 
 
 ## Docs
 * [The Install](#the-install)
@@ -9,18 +9,18 @@ Can't find an easy way to organize your table data without sacrificing all the d
 
 
 ## The Install
-You can install PaTables with either NPM or Yarn
+You can install Carpentr with either NPM or Yarn
 
 
 ### NPM
 ```
-$ npm install --save patables
+$ npm install --save carpentr
 ```
 
 
 ### Yarn
 ```
-$ yarn add patables
+$ yarn add carpentr
 ```
 
 
@@ -29,7 +29,7 @@ $ yarn add patables
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import { Patables } from 'patables'
+import { Carpentr } from 'carpentr'
 
 class Users extends Component {
   constructor(props) {

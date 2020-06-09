@@ -1,7 +1,8 @@
 module.exports = {
   moduleFileExtensions: ['js', 'json'],
   transform: {
-    '^.+\\.js$': './test/transform.js'
+    '^.+\\.js$': 'babel-jest'
   },
-  transformIgnorePatterns: ['<rootDir>/node_modules/']
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  coveragePathIgnorePatterns: ['package.json']
 }
