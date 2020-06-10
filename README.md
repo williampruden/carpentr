@@ -157,7 +157,7 @@ export default Users
 
 
 #### initialData
-This is the array of data you wish to put into a table format. If your data is coming back from an API call, then pass along that data however you see fit. Patables checks for updates as its given new data and only re-renders when it detects new information.
+This is the array of data you wish to put into a table format. If your data is coming back from an API call, then pass along that data however you see fit. Carpentr checks for updates as its given new data and only re-renders when it detects new information.
 
 ```js
   const data = [...users] 
@@ -180,7 +180,7 @@ You will be given a method in the next section called `setSearchTerm` that will 
 
 
 #### sortColumn
-If you know in advance what column you wish to sort on then you can pass that information along here. Just tell Patables what `key` in each object inside your array of `initialData` you wish to sort on.
+If you know in advance what column you wish to sort on then you can pass that information along here. Just tell Carpentr what `key` in each object inside your array of `initialData` you wish to sort on.
 
 ```js
   const data = [...users]
@@ -194,7 +194,7 @@ If you know in advance what column you wish to sort on then you can pass that in
 
 
 #### sortOrder
-By default Patables will sort your data in `asc` (ascending order). If you wish for it to sort in descending order you are given the ability to do that here.
+By default Carpentr will sort your data in `asc` (ascending order). If you wish for it to sort in descending order you are given the ability to do that here.
 
 ```js
   const data = [...users]
@@ -226,7 +226,7 @@ If for some reason you don't want the table to start on the first page of result
 
 
 #### pageNeighbors
-Patables will provide to you the pagination logic for your tables. Here is your opportunity to specify how many pages you wish to show up in that pagination array. Some examples:
+Carpentr will provide to you the pagination logic for your tables. Here is your opportunity to specify how many pages you wish to show up in that pagination array. Some examples:
 
 ```js
   const data = [...users]
@@ -249,7 +249,7 @@ Patables will provide to you the pagination logic for your tables. Here is your 
 
 
 #### resultSet
-By default Patables will return the first 10 results to you to display on the screen.  If you would like to change the default setting just pass your desired return into `resultSet`.
+By default Carpentr will return the first 10 results to you to display on the screen.  If you would like to change the default setting just pass your desired return into `resultSet`.
 
 ```js
   const data = [...users]
