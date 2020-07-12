@@ -10,25 +10,26 @@ export const Carpentr = ({
   sortOrder = 'asc',
   pageNeighbors = 2
 }) => {
-  const [$search, setSearch] = useState(search)
-  const [$searchKeys, setSearchKeys] = useState(searchKeys)
-  const [$currentPage, setCurrentPage] = useState(currentPage)
+  const [$search, $setSearch] = useState(search)
+  const [$searchKeys, $setSearchKeys] = useState(searchKeys)
+  const [$currentPage, $setCurrentPage] = useState(currentPage)
   const [$resultSet, $setResultSet] = useState(resultSet)
-  const [$initialData, setInitialData] = useState(initialData)
-  const [$sortColumn, setSortColumn] = useState(sortColumn)
-  const [$sortOrder, setSortOrder] = useState(sortOrder)
-  const [$pageNeighbors, setPageNeighbors] = useState(pageNeighbors)
-  const [$totalPages, setTotalPages] = useState(Math.ceil(initialData.length / resultSet))
+  const [$initialData, $setInitialData] = useState(initialData)
+  const [$sortColumn, $setSortColumn] = useState(sortColumn)
+  const [$sortOrder, $setSortOrder] = useState(sortOrder)
+  const [$pageNeighbors, $setPageNeighbors] = useState(pageNeighbors)
+  const [$totalPages, $setTotalPages] = useState(Math.ceil(initialData.length / resultSet))
 
   useEffect(() => {
-    if ($initialData.length > 0) {
-      setTotalPages(Math.ceil($initialData.length / $resultSet))
+    $setInitialData(initialData)
+    if (initialData.length > 0) {
+      $setTotalPages(Math.ceil(initialData.length / $resultSet))
     }
-  }, [$initialData])
+  }, [initialData])
 
   // SEARCHING
   const setSearchTerm = (e) => {
-    setSearch(e.target.value)
+    $setSearch(e.target.value)
   }
 
   const searchFilter = (arr, searchTerm, searchkeys) => {
@@ -44,8 +45,8 @@ export const Carpentr = ({
     // Resetting the total pages based on filtered data
     const totalPages = Math.ceil(filteredArray.length / $resultSet)
     if (totalPages !== $totalPages) {
-      setTotalPages(totalPages)
-      setCurrentPage(1)
+      $setTotalPages(totalPages)
+      $setCurrentPage(1)
     }
 
     return filteredArray
@@ -78,8 +79,8 @@ export const Carpentr = ({
     } else {
       sortOrder = 'asc'
     }
-    setSortColumn(sortColumn)
-    setSortOrder(sortOrder)
+    $setSortColumn(sortColumn)
+    $setSortOrder(sortOrder)
   }
 
   // RESULT SET
@@ -93,8 +94,8 @@ export const Carpentr = ({
     const totalPages = Math.ceil($initialData.length / resultSet)
     const currentPage = totalPages >= $currentPage ? $currentPage : 1
     $setResultSet(resultSet)
-    setTotalPages(totalPages)
-    setCurrentPage(currentPage)
+    $setTotalPages(totalPages)
+    $setCurrentPage(currentPage)
   }
 
   // VISIBLE DATA
@@ -109,8 +110,8 @@ export const Carpentr = ({
     } else {
       const totalPages = Math.ceil($initialData.length / $resultSet)
       if (totalPages !== $totalPages) {
-        setTotalPages(totalPages)
-        setCurrentPage(1)
+        $setTotalPages(totalPages)
+        $setCurrentPage(1)
       }
     }
 
@@ -173,7 +174,7 @@ export const Carpentr = ({
     sortOrder: $sortOrder,
     totalPages: $totalPages,
     setColumnSortToggle,
-    setCurrentPage,
+    setCurrentPage: $setCurrentPage,
     setResultSet,
     setSearchTerm,
     nextDisabled: $totalPages === $currentPage,
