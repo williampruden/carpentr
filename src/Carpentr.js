@@ -34,7 +34,7 @@ export const Carpentr = ({
 
   const searchFilter = (arr, searchTerm, searchkeys) => {
     // if searchkeys aren't provided use the keys off the first object in array by default
-    const searchKeys = searchkeys.length === 0 ? Object.keys(arr[0]) : searchkeys
+    const searchKeys = (searchkeys.length === 0 && arr.length > 0) ? Object.keys(arr[0]) : searchkeys
     const filteredArray = arr.filter((obj) => {
       return searchKeys.some((key) => {
         if (obj[key] === null || obj[key] === undefined) { return false }
