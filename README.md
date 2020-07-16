@@ -28,7 +28,7 @@ $ yarn add carpentr
 ```js
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Carpentr } from 'carpentr'
+import { useCarpentr } from 'carpentr'
 
 const Users = () => {
 const data = [
@@ -37,7 +37,7 @@ const data = [
   { firstName: 'Sloane', lastName: 'Peterson', dob: '6-19-1967', occupation: 'student' }
 ]
 
-  const payload = Carpentr({
+  const payload = useCarpentr({
     initialData: data,
     sortColumn: 'firstName',
     searchKeys: ['firstName', 'lastName']
@@ -162,7 +162,7 @@ This is the array of data you wish to put into a table format. If your data is c
 ```js
   const data = [...users] 
 
-  const payload = Carpentr({ initialData: data })
+  const payload = useCarpentr({ initialData: data })
 ```
 
 
@@ -172,7 +172,7 @@ You will be given a method in the next section called `setSearchTerm` that will 
 ```js
   const data = [...users]
 
-  const payload = Carpentr({
+  const payload = useCarpentr({
     initialData: data,
     searchKeys: ['firstName', 'lastName']
   })
@@ -185,7 +185,7 @@ If you know in advance what column you wish to sort on then you can pass that in
 ```js
   const data = [...users]
 
-  const payload = Carpentr({
+  const payload = useCarpentr({
     initialData: data,
     searchKeys: ['firstName', 'lastName'],
     sortColumn: 'lastName'
@@ -199,7 +199,7 @@ By default Carpentr will sort your data in `asc` (ascending order). If you wish 
 ```js
   const data = [...users]
 
-  const payload = Carpentr({
+  const payload = useCarpentr({
     initialData: data,
     searchKeys: ['firstName', 'lastName'],
     sortColumn: 'lastName',
@@ -215,7 +215,7 @@ If for some reason you don't want the table to start on the first page of result
   const data = [...users]
   const { currentPage } = useParams()
 
-  const payload = Carpentr({
+  const payload = useCarpentr({
     initialData: data,
     searchKeys: ['firstName', 'lastName'],
     sortColumn: 'lastName',
@@ -231,17 +231,17 @@ Carpentr will provide to you the pagination logic for your tables. Here is your 
 ```js
   const data = [...users]
 
-  const payload = Carpentr({
+  const payload = useCarpentr({
     initialData: data,
     pageNeighbors: 1 // will give you: [1, 2, 3]
   })
 
-  const payload = Carpentr({
+  const payload = useCarpentr({
     initialData: data,
     pageNeighbors: 2 // will give you: [1, 2, 3, 4, 5]
   })
 
-  const payload = Carpentr({
+  const payload = useCarpentr({
     initialData: data,
     pageNeighbors: 3 // will give you: [1, 2, 3, 4, 5, 6, 7]
   })
@@ -254,7 +254,7 @@ By default Carpentr will return the first 10 results to you to display on the sc
 ```js
   const data = [...users]
 
-  const payload = Carpentr({
+  const payload = useCarpentr({
     initialData: data,
     resultSet: 20
   })
@@ -262,7 +262,7 @@ By default Carpentr will return the first 10 results to you to display on the sc
 
 
 ## The Payload
-By running `Carpentr({...options})` you are returned a Payload with all of the values and helper methods you need to manage your Table.
+By running `useCarpentr({...options})` you are returned a Payload with all of the values and helper methods you need to manage your Table.
 
 |Props                |Type   	    |
 |---	                |---	        |

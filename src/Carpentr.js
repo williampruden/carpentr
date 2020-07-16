@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import useDeepCompareEffect from 'use-deep-compare-effect'
 
-export const Carpentr = ({
+export const useCarpentr = ({
   search = '',
   searchKeys = [],
   currentPage = 1,
@@ -8,7 +9,10 @@ export const Carpentr = ({
   initialData = [],
   sortColumn = '',
   sortOrder = 'asc',
-  pageNeighbors = 2
+  pageNeighbors = 2,
+  ls,
+  path = '',
+  saveSettings = false
 }) => {
   const [$search, $setSearch] = useState(search)
   const [$searchKeys, $setSearchKeys] = useState(searchKeys)
@@ -20,16 +24,35 @@ export const Carpentr = ({
   const [$pageNeighbors, $setPageNeighbors] = useState(pageNeighbors)
   const [$totalPages, $setTotalPages] = useState(Math.ceil(initialData.length / resultSet))
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     $setInitialData(initialData)
     if (initialData.length > 0) {
       $setTotalPages(Math.ceil(initialData.length / $resultSet))
     }
   }, [initialData])
 
+  // saves search, sortOrder, sortColumn, currentPage, resultSet
+  const setLocalStorage = (setting, value) => {
+    if (!saveSettings) return
+
+    let settings = {}
+
+    if (ls(`table-${path}`)) {
+      settings = ls(`table-${path}`)
+      settings = {
+        ...settings,
+        [setting]: value
+      }
+    } else {
+      settings[setting] = value
+    }
+    ls(`table-${path}`, settings)
+  }
+
   // SEARCHING
   const setSearchTerm = (e) => {
     $setSearch(e.target.value)
+    setLocalStorage('search', e.target.value)
   }
 
   const searchFilter = (arr, searchTerm, searchkeys) => {
@@ -81,6 +104,9 @@ export const Carpentr = ({
     }
     $setSortColumn(sortColumn)
     $setSortOrder(sortOrder)
+
+    setLocalStorage('sortColumn', sortColumn)
+    setLocalStorage('sortOrder', sortOrder)
   }
 
   // RESULT SET
@@ -96,6 +122,8 @@ export const Carpentr = ({
     $setResultSet(resultSet)
     $setTotalPages(totalPages)
     $setCurrentPage(currentPage)
+
+    setLocalStorage('resultSet', value)
   }
 
   // VISIBLE DATA
@@ -166,6 +194,11 @@ export const Carpentr = ({
     return pages
   }
 
+  const setCurrentPage = (page) => {
+    $setCurrentPage(page)
+    setLocalStorage('currentPage', page)
+  }
+
   return {
     search: $search,
     currentPage: $currentPage,
@@ -174,7 +207,7 @@ export const Carpentr = ({
     sortOrder: $sortOrder,
     totalPages: $totalPages,
     setColumnSortToggle,
-    setCurrentPage: $setCurrentPage,
+    setCurrentPage,
     setResultSet,
     setSearchTerm,
     nextDisabled: $totalPages === $currentPage,
